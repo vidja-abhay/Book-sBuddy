@@ -18,6 +18,10 @@ Book's Buddy is a web application that provides a vast collection of books acros
 - Font Awesome (for icons)
 - CountAPI (for visit counter)
 
+  ## Visit a Book's Buddy
+
+  Link : https://booksbuddy.netlify.app
+
 ## Getting Started
 
 ### Prerequisites
