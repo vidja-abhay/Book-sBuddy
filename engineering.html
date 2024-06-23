@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book's Buddy</title>
+    <link rel="stylesheet" href="fontawesome-free-6.2.1-web/css/all.css">
+    <link rel="Website icon" href="./top/icons8-book-50 (1).png">
+    <style>
+        * {
+            text-decoration: none;
+            text-transform: capitalize;
+            font-family: Arial, Helvetica, sans-serif;
+            outline: none;
+            border: none;
+        }
+
+        html {
+            font-size: 62.5%;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --green: #27ae60;
+            --dark-color: #219150;
+            --black: #444;
+            --light-color: #666;
+            --border: 0.3rem solid rgba(0, 0, 0, 0.1);
+            --border-hover: 0.1rem solid var(--black);
+            --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+
+        html ::-webkit-scrollbar {
+            width: 1rem;
+        }
+
+        html ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        html ::-webkit-scrollbar-thumb {
+            background: var(--black);
+        }
+
+        section {
+            padding: 5rem 9%;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .heading::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 0.01rem;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: -1;
+        }
+
+        .heading span {
+            font-size: 3rem;
+            padding: 0.5rem 2rem;
+            color: var(--black);
+            background: white;
+            border: var(--border);
+        }
+
+        .btn {
+            margin-top: 1rem;
+            display: inline-block;
+            padding: 0.9rem 3rem;
+            border-radius: 0.5rem;
+            color: white;
+            background: var(--green);
+            font-size: 1.7rem;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background: var(--dark-color);
+        }
+
+        section {
+            padding: 5rem 9%;
+        }
+
+        header .header-1 {
+            background: white;
+            padding: 1.5rem 9%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header .header-1 .logo {
+            font-size: 2.5rem;
+            font-weight: bolder;
+            color: var(--black);
+        }
+
+        header .header-1 .logo i {
+            color: var(--green);
+        }
+
+        header .header-1 .search-form {
+            width: 50rem;
+            height: 5rem;
+            border: var(--border);
+            overflow: hidden;
+            background: white;
+            display: flex;
+            align-items: center;
+            border-radius: 1rem;
+        }
+
+        header .header-1 .search-form input {
+            font-size: 1.6rem;
+            padding: 0 1.2rem;
+            height: 100%;
+            width: 100%;
+            text-transform: none;
+            color: var(--black);
+        }
+
+        header .header-1 .search-form label {
+            font-size: 2.5rem;
+            padding-right: 1.5rem;
+            color: var(--black);
+            cursor: pointer;
+        }
+
+        header .header-1 .search-form label:hover {
+            color: var(--green);
+        }
+
+        header .header-1 div {
+            font-size: 2.5rem;
+            margin-left: 1.5rem;
+            color: var(--black);
+            cursor: pointer;
+        }
+
+        header .header-1 div:hover {
+            color: var(--green);
+        }
+
+        header.active {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        #search-btn {
+            display: none;
+        }
+
+        header .header-2 {
+            background: var(--green);
+        }
+
+        header .header-2 .navbar {
+            text-align: center;
+        }
+
+        header .header-2 .navbar a {
+            color: white;
+            display: inline-block;
+            padding: 1.2rem;
+            font-size: 1.7rem;
+        }
+
+        header .header-2 .navbar a:hover {
+            background: var(--dark-color);
+        }
+
+        .home {
+            background: whitesmoke;
+        }
+
+        .home .row {
+            /* display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem; */
+            display: grid;
+            grid-template-columns: 50% 50%;
+            width: 100%;
+        }
+
+        .home .row .content {
+            flex: 1 1 42rem;
+            display: block;
+            margin: auto;
+        }
+
+        .home .row .content h3 {
+            color: var(--black);
+            font-size: 4.5rem;
+            width: 100%;
+        }
+
+        .home .row .image1 img {
+            width: 50rem;
+            height: 35rem;
+            display: block;
+            margin: auto;
+        }
+
+        .bottom-navbar {
+            text-align: center;
+            background: var(--green);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: none;
+        }
+
+        .bottom-navbar a {
+            font-size: 2.5rem;
+            padding: 2rem;
+            color: white;
+        }
+
+        .bottom-navbar a:hover {
+            background: var(--dark-color);
+        }
+
+        .categories-container {
+            /* display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 1.5rem;
+    padding: 4rem; */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 50px auto;
+            flex-direction: row;
+        }
+
+        .category-name {
+            font-size: 2rem;
+            background-color: #fff;
+            border: 0.1rem solid #27ae60;
+            outline: none;
+            border-radius: 1.2rem;
+            padding: 0.5rem 1rem;
+            /* box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, .2); */
+            width: 60rem;
+            margin: 1.5rem;
+        }
+
+        .category-name option{
+            text-overflow: ellipsis;
+        }
+
+        .category-name:hover {
+            box-shadow: 0 0.2rem 0.1rem #27ae60;
+            cursor: pointer;
+        }
+
+        .footer .box-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+            gap: 1.5rem;
+            padding: 50px 111px;
+        }
+
+        .footer .box-container .box h3 {
+            font-size: 2.2rem;
+            color: var(--black);
+            padding: 1rem 0;
+        }
+
+        .footer .box-container .box a {
+            display: block;
+            font-size: 1.4rem;
+            color: var(--light-color);
+            padding: 1rem 0;
+
+        }
+
+        .footer .box-container .box a i {
+            color: var(--green);
+            padding-right: 1rem;
+            transition: 0.3s all ease-in-out;
+        }
+
+        .footer .box-container .box a:hover i {
+            padding-right: 2rem;
+        }
+
+        .footer .share {
+            padding: 1rem 0;
+            text-align: center;
+
+        }
+
+        .footer .share a {
+            /* height: 5rem;
+    width: 5rem;
+    line-height: 5rem; */
+            font-size: 2rem;
+            color: var(--green);
+            margin: 0 0.5rem;
+            cursor: pointer;
+        }
+
+        .footer .share a:hover {
+            color: var(--dark-color);
+        }
+
+        .footer .credit {
+            border-top: var(--border);
+            margin-top: 2rem;
+            padding: 0 1rem;
+            padding-top: 2.5rem;
+            font-size: 2rem;
+            color: var(--light-color);
+            text-align: center;
+        }
+
+        .footer .credit span {
+            color: var(--green);
+        }
+
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: 10000;
+            background: #f7f7f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader-container.active {
+            display: none;
+        }
+
+        @media(max-width : 990px) {
+            html {
+                font-size: 55%;
+            }
+
+            header .header-1 {
+                padding: 2rem;
+            }
+
+            section {
+                padding: 3rem 2rem;
+            }
+        }
+
+        @media(max-width : 780px) {
+            html {
+                font-size: 52%;
+            }
+        }
+
+        @media(max-width : 680px) {
+            html {
+                scroll-padding-top: 0;
+            }
+
+            body {
+                padding-bottom: 6rem;
+            }
+
+            header .header-2 {
+                display: none;
+            }
+
+            header .header-1 {
+                box-shadow: var(--box-shadow);
+                position: relative;
+            }
+
+            header .header-1 .search-form {
+                position: absolute;
+                top: -115%;
+                right: 2rem;
+                width: 90%;
+                box-shadow: var(--box-shadow);
+            }
+
+            header .header-1 .search-form.active {
+                top: 115%;
+            }
+
+            #search-btn {
+                display: inline-block;
+            }
+
+            /* .icons{
+        display: inline-block;
+    } */
+
+            .bottom-navbar {
+                display: block;
+            }
+
+            .home .row {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .home .row .image1 img {
+                width: 35rem;
+                height: 25rem;
+                display: block;
+                margin: auto;
+            }
+
+            .home .row .content {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            .home .row .content h3 {
+                font-size: 3.5rem;
+            }
+
+            .category .cat-box {
+                width: 17rem;
+                height: 11rem;
+            }
+
+            .category .cat-box .upper {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .category .cat-box .upper img {
+                width: 8rem;
+                height: 8rem;
+                display: block;
+                margin: auto;
+            }
+
+            .category .cat-box .upper a {
+                font-size: 1.7rem;
+            }
+
+            .category .cat-box .lower {
+                display: none;
+            }
+
+            .category-name .over{
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            /* .category .cat-box{
+        margin-top: 1.5rem;
+        background: whitesmoke;
+    }
+
+    .category .cat-box:hover{
+        transform: none;
+    } */
+        }
+
+        @media(max-width : 450px) {
+            html {
+                font-size: 55%;
+            }
+
+            header .header-1 {
+                padding: 2rem;
+            }
+
+            .category-name option{
+                text-overflow: ellipsis;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <div class="header-1">
+            <a href="#" class="logo"><i class="fa-solid fa-book"></i>Book's Buddy</a>
+        </div>
+
+        <div class="header-2">
+            <nav class="navbar">
+                <a href="./index.html">Home</a>
+                <a href="./category.html">Category</a>
+                <a href="#cate">engineering</a>
+                <a href="#footer">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="home" id="home">
+        <div class="row">
+            <div class="content">
+                <h3>India's biggest online free digital Library</h3>
+                <a href="#cate" class="btn">Read Now</a>
+            </div>
+    
+            <div class="image1">
+                <img src="./top/template.png" alt="">
+            </div>
+        </div>
+    </section>
+
+    <nav class="bottom-navbar">
+        <a href="./index.html" class="fa-solid fa-house"></a>
+        <a href="./category.html" class="fa-solid fa-list"></a>
+        <a href="#home" class="fa-solid fa-book"></a>
+    </nav>
+
+    <div class="categories-container" id="cate">
+        <select name="" id="sel" class="category-name" size="1" onchange="window.location.href = this.value;">
+            <option value="">SEM 1 & 2</option>
+            <OPtion value="https://drive.google.com/file/d/1Wwyw-5dYsVhGONqaXlYKM5IjOa6buELz/view?usp=share_link" target="blank">3110004 - BCE</OPtion>
+            <option value="https://drive.google.com/file/d/1JZ8YwfHzzubq7hKUF9Dw-wZXryWDxRen/view?usp=share_link" target="blank">3110005 - BEE</option>
+            <option value="https://drive.google.com/file/d/1S5eTFFpf6AeiR7LNQ13SWCcNlZtd-c5Y/view?usp=share_link" target="blank">3110016 - BE</option>
+            <option value="https://drive.google.com/file/d/1dlAgSvkA0qWkHhbE0sQ4JnLk-wx9bAze/view?usp=share_link" target="blank">3110006 - BME</option>
+            <option value="https://drive.google.com/file/d/1JVHjVllKwefTfgKTotREHrzjslUtcoC3/view?usp=share_link" target="blank">3110001 - EC</option>
+            <option value="https://drive.google.com/file/d/1xpQQUmskprH_nHpaYDfznctWGNu_OAAr/view?usp=share_link" class="over" target="blank">3110013 - EGD</option>
+            <option value="https://drive.google.com/file/d/1YepfXkJb_4r4qPGFbaJ0J7lB-oMPbuVu/view?usp=share_link" target="blank">3110015 - MATHS (2)</option>
+            <option value="https://drive.google.com/file/d/11MEZp2Q8RsUaqd29NySpUZLevPyCWKe1/view?usp=share_link" target="blank">3110011 - PHYSICS (1)</option>
+            <option value="https://drive.google.com/file/d/1bxzAWp32DEovS0f_WWy4a99l62_ehJGU/view?usp=share_link" target="blank">3110007 - ES</option>
+            <option value="https://drive.google.com/file/d/1PCJlcIrfeR_BqYEMBCasogJKRnIDYNHY/view?usp=share_link" target="blank">3110002 - ENGLISH</option>
+            <option value="https://drive.google.com/file/d/1DgFC8-mJizX4PO1QYit5rvnQLw66nknk/view?usp=share_link" target="blank">3110018 - PHYSICS (2)</option>
+            <option value="https://drive.google.com/file/d/14bmbkcoXEnizZv8hfqnhsrY30qqEwhPp/view?usp=share_link" target="blank">3110014 - MATHS (1)</option>
+            <option value="https://drive.google.com/file/d/10ugAh8_sdbeamXak0GYDLWD9n-suxe6P/view?usp=share_link" target="blank">3110003 - PPS</option>
+        </select>
+
+        <select name="" id="sel" class="category-name" size="1" onchange="window.location.href = this.value;">
+            <option value="">SEM 3</option>
+            <option value="https://drive.google.com/file/d/1xp99k0afMWPgsaMXK0-jSWAEKDtRnyEc/view?usp=share_link">ETC - 3130004</option>
+            <option value="https://drive.google.com/file/d/1EvThQIlrd95E4cdE-yfw13K4O_X9li9r/view?usp=share_link">DBMS - 3130703</option>
+            <option value="https://drive.google.com/file/d/1aynKE4kwn_mC8aL_YU9SCBP5xUnqPfmJ/view?usp=share_link">DF - 3130704</option>
+            <option value="https://drive.google.com/file/d/197kcDffBoMGa4LjcTIEhnXL-QMOdNTwg/view?usp=share_link">DS - 3130702</option>
+            <option value="https://drive.google.com/file/d/1P2vpS09WFfNGP8YhpIACiS9xaeBj3BAn/view?usp=share_link">IC - 3130007</option>
+        </select>
+
+        <select name="" id="sel" class="category-name" size="1" onchange="window.location.href = this.value;">
+            <option value="">SEM 4</option>
+            <option value="https://drive.google.com/file/d/19IPMHWLC5TrEckAIwPg5lo49jTyg22Pi/view?usp=share_link">COA - 3140707</option>
+            <option value="https://drive.google.com/file/d/1zIMset3VMJ4IB_gaUeZly2XN8UaKAL1P/view?usp=share_link">DM - 3140708</option>
+            <option value="https://drive.google.com/file/d/1eP8V0KXk-ux--r3rzWW0flz_QxCLgS4Q/view?usp=share_link">OOPs - 3140705</option>
+            <option value="https://drive.google.com/file/d/1PCvSC-dI6K8r5b1KxmsggUguY3zyJ9NM/view?usp=share_link">OS - 3140702</option>
+            <option value="https://drive.google.com/file/d/1FyVV27buqFMpymOckwh7F59s4ebdDYQB/view?usp=share_link">PEM - 3140709</option>
+        </select>
+
+        <select name="" id="sel" class="category-name" size="1" onchange="window.location.href = this.value;">
+            <option value="">SEM 5</option>
+            <option value="https://drive.google.com/file/d/1Jfg28SNULcYNuWGptr6Z68HMy07aFm0a/view?usp=share_link">ADA - 3150703</option>
+            <option value="https://drive.google.com/file/d/1LG4odOdD8474S-C3IRYMV2272k7ZbwEZ/view?usp=share_link">CN - 3150710</option>
+            <option value="https://drive.google.com/file/d/11EjILJZpyN8_viU4WaYzOzvuDLvSl3bI/view?usp=share_link">PE - 3150709</option>
+            <option value="https://drive.google.com/file/d/1J5ELEy248SibTi2ST8aqR1tr_khLnutw/view?usp=share_link">PYTHON - 3150713</option>
+            <option value="https://drive.google.com/file/d/1512zUuxIJFhf_Fr61V12vildN_ETcL1O/view?usp=share_link">SE - 3150711</option>
+        </select>
+
+        <select name="" id="sel" class="category-name" size="1" onchange="window.location.href = this.value;">
+            <option value="">SEM 6</option>
+            <option value="https://drive.google.com/file/d/1JR64IPPeKuSbheUx5v5JQNVfM-5V7r4_/view?usp=share_link">AJP - 3160707</option>
+            <option value="https://drive.google.com/file/d/1r2xTHJ1rkysAsE2wpnpE7oyuPUpIj7hG/view?usp=share_link">DM - 3160714</option>
+            <option value="https://drive.google.com/file/d/1pYPzAdsqVGq57caIvAD52sXjIxKsBv1V/view?usp=share_link">DV - 3160717</option>
+            <option value="https://drive.google.com/file/d/13mGLVmiEiHB7nI-Ei-XWcL5LKxlKWzNl/view?usp=share_link">IOT - 3160716</option>
+            <option value="https://drive.google.com/file/d/12iS2DJTtjxaZj17NaQlhe5JoqGuwmU77/view?usp=share_link">MPI - 3160712</option>
+            <option value="https://drive.google.com/file/d/1s_aK24jRd_VFFd2anVo15Prx3DCjFxK6/view?usp=share_link">SS - 3160715</option>
+            <option value="https://drive.google.com/file/d/1AvI9OH414DK6N7iaWjDRIwt8bxQtlGw5/view?usp=share_link">WP - 3160713</option>
+        </select>
+
+        <select name="" id="sel" class="category-name" size="1" onchange="window.location.href = this.value;">
+            <option value="">SEM 7</option>
+            <option value="https://drive.google.com/file/d/16t5t-bRQIoV4MIffYpElwArcBmH6qsai/view?usp=share_link">AI - 3170716</option>
+            <option value="https://drive.google.com/file/d/16CaLcn9sHxfJWr-MGdDXLefeKc3lpIn1/view?usp=share_link">BDA - 2171607</option>
+            <option value="https://drive.google.com/file/d/1imFcQoS7I-f-L0M6wZng5tOtJptD1hwd/view?usp=share_link">CC - 3170717</option>
+            <option value="https://drive.google.com/file/d/1bjDRSMzke8zunQ6mlO3RTvoN9bERleZr/view?usp=share_link">DF - 3170725</option>
+            <Option value="https://drive.google.com/file/d/1_nw3XA_wjT2n90AeJ6eN-GfRCpECAolu/view?usp=share_link">IS - 3170720</Option>
+            <option value="https://drive.google.com/file/d/13ILpl_zTV9VkQjNy_sEFIGWgMqM3L6Oa/view?usp=share_link">MAD - 3170726</option>
+            <option value="https://drive.google.com/file/d/129BG82PQMxq8vKGZLRxWjsOkgnr4ybip/view?usp=share_link">MCWC - 2170709</option>
+            <option value="https://drive.google.com/file/d/1rpDchVIwG08JCztaESgY_SobPw_9DebQ/view?usp=share_link">ML - 3170724</option>
+            <option value="https://drive.google.com/file/d/1gje0J6QOc-vp_NIn6_d_TwJu0lSuOjZd/view?usp=share_link">NLP - 3170723</option>
+        </select>
+    </div>
+
+    <section class="footer" id="footer">
+        <!-- <div class="box-container">
+            <div class="box">
+                <h3>our location</h3>
+                <a href="#"><i class="fa-solid fa-location-dot"></i>india</a>
+            </div>
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#"><i class="fa-solid fa-arrow-right"></i>home</a>
+                <a href="#"><i class="fa-solid fa-arrow-right"></i>category</a>
+                <a href="#"><i class="fa-solid fa-arrow-right"></i>founder</a>
+                <a href="#"><i class="fa-solid fa-arrow-right"></i>about</a>
+            </div>
+
+            <div class="box">
+                <h3>Extra links</h3>
+                <a href="#"><i class="fa-solid fa-arrow-right"></i>Account info</a>
+                <a href="#"><i class="fa-solid fa-arrow-right"></i>privacy policy</a>
+                <a href="#"><i class="fa-solid fa-arrow-right"></i>our services</a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#"><i class="fa-solid fa-phone"></i>+91 63514 36046</a>
+                <a href="#"><i class="fa-solid fa-envelope"></i>abhayvidja09@gmail.com</a>
+            </div>
+        </div> -->
+
+        <div class="share">
+
+            <a href="https://www.facebook.com/abhay.vidja?mibextid=ZbWKwL"><i class="fa-brands fa-facebook"></i></a>
+
+            <a href="https://instagram.com/abhay._____.09?igshid=ZDdkNTZiNTM="><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/abhay-vidja-964889258"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+
+        <div class="credit">
+            created by <span>abhay vidja</span> | all rights reserved.
+        </div>
+    </section>
+
+    <div class="loader-container">
+        <img src="./gif/book.gif" alt="">
+    </div>
+
+    <script>
+
+        // header-2 ne fixed karva
+        // window.onscroll = () => {
+        //     searchForm.classList.remove('active');
+
+        //     if (window.scrollY > 80) {
+        //         document.querySelector('header ').classList.add('active');
+        //     }
+        //     else {
+        //         document.querySelector('header ').classList.remove('active');
+        //     }
+        // }
+
+        // restart karo toy eya ne eya j riye
+        window.onload = () => {
+            if (window.scrollY > 80) {
+                document.querySelector('header ').classList.add('active');
+            }
+            else {
+                document.querySelector('header ').classList.remove('active');
+            }
+
+            fadeOut();
+        }
+
+        // serch bar lavava mate
+        searchForm = document.querySelector('.search-form');
+        document.querySelector('#search-btn').onclick = () => {
+            searchForm.classList.toggle('active');
+        }
+
+        //login mate
+        let loginForm = document.querySelector('.login-form-container');
+        document.querySelector('#login-btn').onclick = () => {
+            loginForm.classList.toggle('active');
+        }
+        document.querySelector('#close-login-btn').onclick = () => {
+            loginForm.classList.remove('active');
+        }
+
+        function loader() {
+            document.querySelector('.loader-container').classList.add('active');
+        }
+
+        function fadeOut() {
+            setTimeout(loader, 2000);
+        }
+    </script>
+</body>
+
+</html>

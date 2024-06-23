@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book's Buddy</title>
+    <link rel="stylesheet" href="fontawesome-free-6.2.1-web/css/all.css">
+    <link rel="Website icon" href="./top/icons8-book-50 (1).png">
+    <style>
+        * {
+            text-decoration: none;
+            text-transform: capitalize;
+            font-family: Arial, Helvetica, sans-serif;
+            outline: none;
+            border: none;
+        }
+
+        html {
+            font-size: 62.5%;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --green: #27ae60;
+            --dark-color: #219150;
+            --black: #444;
+            --light-color: #666;
+            --border: 0.3rem solid rgba(0, 0, 0, 0.1);
+            --border-hover: 0.1rem solid var(--black);
+            --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+
+        html ::-webkit-scrollbar {
+            width: 1rem;
+        }
+
+        html ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        html ::-webkit-scrollbar-thumb {
+            background: var(--black);
+        }
+
+        section {
+            padding: 5rem 9%;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .heading::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 0.01rem;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: -1;
+        }
+
+        .heading span {
+            font-size: 3rem;
+            padding: 0.5rem 2rem;
+            color: var(--black);
+            background: white;
+            border: var(--border);
+        }
+
+        .btn {
+            margin-top: 1rem;
+            display: inline-block;
+            padding: 0.9rem 3rem;
+            border-radius: 0.5rem;
+            color: white;
+            background: var(--green);
+            font-size: 1.7rem;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background: var(--dark-color);
+        }
+
+        /* section {
+            padding: 5rem 9%;
+        } */
+
+        header .header-1 {
+            background: white;
+            padding: 1.5rem 9%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header .header-1 .logo {
+            font-size: 2.5rem;
+            font-weight: bolder;
+            color: var(--black);
+        }
+
+        header .header-1 .logo i {
+            color: var(--green);
+        }
+
+        header .header-1 .search-form {
+            width: 50rem;
+            height: 5rem;
+            border: var(--border);
+            overflow: hidden;
+            background: white;
+            display: flex;
+            align-items: center;
+            border-radius: 1rem;
+        }
+
+        header .header-1 .search-form input {
+            font-size: 1.6rem;
+            padding: 0 1.2rem;
+            height: 100%;
+            width: 100%;
+            text-transform: none;
+            color: var(--black);
+        }
+
+        header .header-1 .search-form label {
+            font-size: 2.5rem;
+            padding-right: 1.5rem;
+            color: var(--black);
+            cursor: pointer;
+        }
+
+        header .header-1 .search-form label:hover {
+            color: var(--green);
+        }
+
+        header .header-1 div {
+            font-size: 2.5rem;
+            margin-left: 1.5rem;
+            color: var(--black);
+            cursor: pointer;
+        }
+
+        header .header-1 div:hover {
+            color: var(--green);
+        }
+
+        header.active {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        #search-btn {
+            display: none;
+        }
+
+        header .header-2 {
+            background: var(--green);
+        }
+
+        header .header-2 .navbar {
+            text-align: center;
+        }
+
+        header .header-2 .navbar a {
+            color: white;
+            display: inline-block;
+            padding: 1.2rem;
+            font-size: 1.7rem;
+        }
+
+        header .header-2 .navbar a:hover {
+            background: var(--dark-color);
+        }
+
+        .home {
+            background: whitesmoke;
+        }
+
+        .home .row {
+            /* display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem; */
+            display: grid;
+            grid-template-columns: 50% 50%;
+            width: 100%;
+        }
+
+        .home .row .content {
+            flex: 1 1 42rem;
+            display: block;
+            margin: auto;
+        }
+
+        .home .row .content h3 {
+            color: var(--black);
+            font-size: 4.5rem;
+            width: 100%;
+        }
+
+        .home .row .image1 img {
+            width: 50rem;
+            height: 35rem;
+            display: block;
+            margin: auto;
+        }
+
+        .bottom-navbar {
+            text-align: center;
+            background: var(--green);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: none;
+        }
+
+        .bottom-navbar a {
+            font-size: 2.5rem;
+            padding: 2rem;
+            color: white;
+        }
+
+        .bottom-navbar a:hover {
+            background: var(--dark-color);
+        }
+
+        .categories-container {
+            /* display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 1.5rem;
+    padding: 4rem; */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 50px auto;
+            flex-direction: row;
+        }
+
+        .category-name {
+            font-size: 1.6rem;
+            background-color: #fff;
+            border: 0.1rem solid #27ae60;
+            outline: none;
+            border-radius: 1.2rem;
+            padding: 0.5rem 1rem;
+            /* box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, .2); */
+            width: 60rem;
+            margin: 1.5rem;
+        }
+
+        .category-name:hover {
+            box-shadow: 0 0.2rem 0.1rem #27ae60;
+            cursor: pointer;
+        }
+
+        .footer .box-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+            gap: 1.5rem;
+            padding: 50px 111px;
+        }
+
+        .footer .box-container .box h3 {
+            font-size: 2.2rem;
+            color: var(--black);
+            padding: 1rem 0;
+        }
+
+        .footer .box-container .box a {
+            display: block;
+            font-size: 1.4rem;
+            color: var(--light-color);
+            padding: 1rem 0;
+
+        }
+
+        .footer .box-container .box a i {
+            color: var(--green);
+            padding-right: 1rem;
+            transition: 0.3s all ease-in-out;
+        }
+
+        .footer .box-container .box a:hover i {
+            padding-right: 2rem;
+        }
+
+        .footer .share {
+            padding: 1rem 0;
+            text-align: center;
+
+        }
+
+        .footer .share a {
+            /* height: 5rem;
+    width: 5rem;
+    line-height: 5rem; */
+            font-size: 2rem;
+            color: var(--green);
+            margin: 0 0.5rem;
+            cursor: pointer;
+        }
+
+        .footer .share a:hover {
+            color: var(--dark-color);
+        }
+
+        .footer .credit {
+            border-top: var(--border);
+            margin-top: 2rem;
+            padding: 0 1rem;
+            padding-top: 2.5rem;
+            font-size: 2rem;
+            color: var(--light-color);
+            text-align: center;
+        }
+
+        .footer .credit span {
+            color: var(--green);
+        }
+
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: 10000;
+            background: #f7f7f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader-container.active {
+            display: none;
+        }
+
+        @media(max-width : 990px) {
+            html {
+                font-size: 55%;
+            }
+
+            header .header-1 {
+                padding: 2rem;
+            }
+
+            section {
+                padding: 3rem 2rem;
+            }
+        }
+
+        @media(max-width : 780px) {
+            html {
+                font-size: 52%;
+            }
+        }
+
+        @media(max-width : 680px) {
+            html {
+                scroll-padding-top: 0;
+            }
+
+            body {
+                padding-bottom: 6rem;
+            }
+
+            header .header-2 {
+                display: none;
+            }
+
+            header .header-1 {
+                box-shadow: var(--box-shadow);
+                position: relative;
+            }
+
+            header .header-1 .search-form {
+                position: absolute;
+                top: -115%;
+                right: 2rem;
+                width: 90%;
+                box-shadow: var(--box-shadow);
+            }
+
+            header .header-1 .search-form.active {
+                top: 115%;
+            }
+
+            #search-btn {
+                display: inline-block;
+            }
+
+            /* .icons{
+        display: inline-block;
+    } */
+
+            .bottom-navbar {
+                display: block;
+            }
+
+            .home .row {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .home .row .image1 img {
+                width: 35rem;
+                height: 25rem;
+                display: block;
+                margin: auto;
+            }
+
+            .home .row .content {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            .home .row .content h3 {
+                font-size: 3.5rem;
+            }
+
+            .category .cat-box {
+                width: 17rem;
+                height: 11rem;
+            }
+
+            .category .cat-box .upper {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .category .cat-box .upper img {
+                width: 8rem;
+                height: 8rem;
+                display: block;
+                margin: auto;
+            }
+
+            .category .cat-box .upper a {
+                font-size: 1.7rem;
+            }
+
+            .category .cat-box .lower {
+                display: none;
+            }
+
+            .footer {
+                padding: 0;
+            }
+
+            /* .category .cat-box{
+        margin-top: 1.5rem;
+        background: whitesmoke;
+    }
+
+    .category .cat-box:hover{
+        transform: none;
+    } */
+        }
+
+        @media(max-width : 450px) {
+            html {
+                font-size: 55%;
+            }
+
+            header .header-1 {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-1">
+            <a href="#" class="logo"><i class="fa-solid fa-book"></i>Book's Buddy</a>
+        </div>
+
+        <div class="header-2">
+            <nav class="navbar">
+                <a href="./index.html">Home</a>
+                <a href="#cate">Category</a>
+                <a href="./engineering.html">engineering</a>
+                <a href="#footer">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="home" id="home">
+        <div class="row">
+            <div class="content">
+                <h3>India's biggest online free digital Library</h3>
+                <a href="#cate" class="btn">Read Now</a>
+            </div>
+            
+            <div class="image1">
+                <img src="./top/template.png" alt="">
+            </div>
+        </div>
+    </section>
+
+    <nav class="bottom-navbar">
+        <a href="./index.html" class="fa-solid fa-house"></a>
+        <a href="#home" class="fa-solid fa-list"></a>
+        <a href="./engineering.html" class="fa-solid fa-book"></a>
+    </nav>
+
+    <div class="categories-container" id="cate">
+        <select name="" id="sel" class="category-name" size="1" onchange="window.location.href = this.value;">
+            <option value="">Biography</option>
+            <option value="https://drive.google.com/file/d/1Cs359zHlgV4-Ag_6hKAYDyX1_wZy2-Wk/view?usp=share_link">Playing It My Way</option>
+            <option value="https://drive.google.com/file/d/1m4lLkruJe00GtU7OgsBBe79_eAGYtc8b/view?usp=share_link">Alex Ferguson</option>
+            <option value="https://drive.google.com/file/d/1dR2KYvm2qBKdyQpDKbZOiPDOuk6rn4Ul/view?usp=share_link">Cristiano Ronaldo</option>
+            <option value="https://drive.google.com/file/d/1XJ46Q-PB36qYHa1cEIR_iQibQo8OqLb6/view?usp=share_link">Elon Musk</option>
+            <option value="https://drive.google.com/file/d/1SbD9ZGr6SfGgN0teB7jxbNd1frXIFwr5/view?usp=share_link">Jack Ma</option>
+            <option value="https://drive.google.com/file/d/175-c3QGgvSb6p2H4R7q9qfQmylLll-b0/view?usp=share_link">Faster than Lightning</option>
+            <option value="https://drive.google.com/file/d/1CqFslL4vwbl89B15ohR01nxft5T-SwFE/view?usp=share_link">Finding My Virginity</option>
+            <option value="https://drive.google.com/file/d/1X_b2GZJ7Fws6U3_2RFjVcuVDsI4FlwAI/view?usp=share_link">I, Steve _ Steve Jobs</option>
+            <option value="https://drive.google.com/file/d/1JyQ_A7klFFEhe8s0VtgETDmBxoE6iwqK/view?usp=share_link">Losing My Virginity</option>
+            <option value="https://drive.google.com/file/d/1v0gPMusAyXNiQdsuBW_ZPJHlXV8kPaaS/view?usp=share_link">Messi : The Inside story</option>
+            <option value="https://drive.google.com/file/d/1Co1Npxcclh_7EQdm116OcSKyEofvQRPo/view?usp=share_link">Mike Tyson</option>
+            <option value="https://drive.google.com/file/d/1Oz9Q5Q1cvZlj10XgbR_VfLRNYu-9fjRv/view?usp=share_link">Napoleon</option>
+            <option value="https://drive.google.com/file/d/1Gj9p4RxyDG_nQUfA04RCb1U_08YcgjLr/view?usp=share_link">Oprah Winfrey</option>
+            <option value="https://drive.google.com/file/d/19cYn4mLOFcX0nVab1EJ3dcbswWqDTp-v/view?usp=share_link">Shoe Dog</option>
+            <option value="https://drive.google.com/file/d/1YE5Q63qmWssUmSt38lrICFChHH_Fujy2/view?usp=share_link">Steve Jobs</option>
+        </select>
+
+        <select name="" id="sel" class="category-name business" size="1" onchange="window.location.href = this.value;">
+            <option value="">Business</option>
+            <option value="https://drive.google.com/file/d/1b2ztD6qHaAYGsuaNIirw1FXKGglrhaXU/view?usp=share_link">100 Great Business Ideas</option>
+            <option value="https://drive.google.com/file/d/1LTj0qpFf6JIhqT7CWOa_HrkNagFpGwxZ/view?usp=share_link">100 Great Marketing Ideas</option>
+            <option value="https://drive.google.com/file/d/1W32MbGj2KYldDxT5DJHUdpNiqyLcr3kO/view?usp=share_link">100 Great Time Management Ideas</option>
+            <option value="https://drive.google.com/file/d/1BbV4fClN_4IA_JbLYyLzibVjy45ZKS9g/view?usp=share_link">Business Secrets from the Bible</option>
+            <option value="https://drive.google.com/file/d/1fdGUrImB8OejC939MSNJsqDI9da3I241/view?usp=share_link">Business-Adventures</option>
+            <option value="https://drive.google.com/file/d/16TUDBDR17a1oRCg3hXm-TMB6EStt_poj/view?usp=share_link">Passive Income</option>
+            <option value="https://drive.google.com/file/d/1dGXUbBKKKAEkbT-b8fMSo6Q40Bza9g5P/view?usp=share_link">The Art of Strategy</option>
+            <option value="https://drive.google.com/file/d/18Hrd12EPmMM2w2oRiO1sd5iIQlIWPr8x/view?usp=share_link">The Four_ The Hidden DNA of FAAG</option>
+            <option value="https://drive.google.com/file/d/1Jvkn22XM4BKmBfP8en7EZPoG_aTgdAvj/view?usp=share_link">The Greatest Business Decisions of All Time</option>
+            <option value="https://drive.google.com/file/d/1m_hgZ3QGo3OWRm8INI7Rm879Cx5xyNQ3/view?usp=share_link">The Lean Startup</option>
+            <option value="https://drive.google.com/file/d/1bwXoectf4SAf78pw4Ec9NWQ4x5hHjkNu/view?usp=share_link">Think Like an Entrepreneur</option>
+            <option value="https://drive.google.com/file/d/1x6K9LiL8farCjUS1T5LXpytabPp_94l-/view?usp=share_link">Zero to One</option>
+        </select>
+
+        <select name="" id="sel" class="category-name" size="1" onchange="window.location.href = this.value;">
+            <option value="">Technology</option>
+            <option value="https://drive.google.com/file/d/1ArxiUOC7XfieG53gmL6iXqSJtlBBkmf7/view?usp=share_link">23rd_Solvay_Physics</option>
+            <option value="https://drive.google.com/file/d/13tesMPcM-IWZcA2XMrS1I5T6qX7LX1uB/view?usp=share_link">Time travel</option>
+            <option value="https://drive.google.com/file/d/1uYaBjC5deUl6w20JX3xoHehQi6zBSvcR/view?usp=share_link">Basics of Space Flight</option>
+            <option value="https://drive.google.com/file/d/1AsbHWFFyesv_3FvHkadHn32gbkyLu11Z/view?usp=share_link">Computer Systems</option>
+            <option value="https://drive.google.com/file/d/1bbjhDYwq-CKPGq5TcWtqsUMWstMihIc9/view?usp=share_link">Data Analysis with Microsoft Excel</option>
+            <option value="https://drive.google.com/file/d/1kzKVNfYAcjqDr33CSaLeWA5K89fYuXed/view?usp=share_link">Engine control system</option>
+            <option value="https://drive.google.com/file/d/17-zKiSXAlkSiSjJrliySVkC2v0fcCrqD/view?usp=share_link">Rocket Science and Engineering</option>
+            <option value="https://drive.google.com/file/d/1jWCvvcn-OnJ1yxBBYTOtRXu-Y4vJpCZW/view?usp=share_link">The Architecture of Computer</option>
+            <option value="https://drive.google.com/file/d/17NbjmBbaASXO5p1vYU826Pc4PAP6IHL8/view?usp=share_link">The Internet Encyclopedia</option>
+            <option value="https://drive.google.com/file/d/1I-oTkl97j5fY2Ay__5GVLHw8ogkBFisw/view?usp=share_link">Black Holes and Baby Universes</option>
+            <option value="https://drive.google.com/file/d/1yPCm3bMcOANKuOvNUDahRiX7k0lauezv/view?usp=share_link">Black Hole</option>
+            <option value="https://drive.google.com/file/d/1FczNuu26JI_IgqCXGBfrTYxXz77WwoZj/view?usp=share_link">Exploring the Invisible Universe</option>
+            <option value="https://drive.google.com/file/d/1mFk9SGTBe48jQoBNxzb1V32agTzqXahZ/view?usp=share_link">Gravitational Radiation</option>
+            <option value="https://drive.google.com/file/d/1-hKKWyfluqRa2RB4pcrqAKP0_kGALyvh/view?usp=share_link">Hawking on the Big Bang and Black Holes</option>
+            
+        </select>
+
+        <select name="" id="sel" class="category-name" size="1" onchange="window.location.href = this.value;">
+            <option value="">Self Development</option>
+            <option value="https://drive.google.com/file/d/14XMJJdSRiXmbbqtkVrVJ0acQNj3nZL4U/view">Everything Is F*cked</option>
+            <option value="https://drive.google.com/file/d/1CPFiDxUBUFJf2hdZ8Xa1paJyZctRSj6i/view">The 5 AM Club</option>
+            <option value="https://drive.google.com/file/d/130fmyKWI39t6IgLlOCd5cYYDJ4P3bE4O/view">Think And Grow Rich</option>
+            <option value="https://drive.google.com/file/d/130fmyKWI39t6IgLlOCd5cYYDJ4P3bE4O/view">Act Like a Leader</option>
+            <option value="https://drive.google.com/file/d/1jwg_Nl0R1ZF43maASbveY62cwrf9z8td/view">Get Epic Shit Done</option>
+            <option value="https://drive.google.com/file/d/1uqGEAC3f94lkn_KdPklAnICbqD-aBWun/view">Atomic Habits</option>
+            <option value="https://drive.google.com/file/d/1m-1_lectvfSiX2-oSgWKgA8Ia4jyLup_/view?usp=share_link">Doglapan</option>
+            <option value="https://drive.google.com/file/d/1a6MXddvVZp8oRw_6lpeiOBXw9PFFdPxS/view?usp=share_link">How I made my first million </option>
+            <option value="https://drive.google.com/file/d/1h_zpsjo8NzVhgW3g7ZXnknijBENzl4yw/view">Ikigai</option>
+            <option value="https://drive.google.com/file/d/1-G8c1XPktmm1hS7z_Q4mPpRNMWL4EWC-/view?usp=share_link">Mistakes I made with Money</option>
+            <option value="https://drive.google.com/file/d/1dkfBmroSF5rIPS1keQ0Sg-S1E6b2sDJK/view?usp=share_link">Power Of Subconcius Mind</option>
+            <option value="https://drive.google.com/file/d/13kKkKcP7Kr4Mr4fmL5oY2moGaEvMa7gC/view?usp=share_link">Rich Dad Poor Dad</option>
+            <option value="https://drive.google.com/file/d/1maSNBaWx-uQTZ7M5FTx3o7U-Q1WZ9g-f/view?usp=share_link">Robin Sharma Pack</option>
+            <option value="https://drive.google.com/file/d/1uHZmovYJ7GWZKJ-i8wfrrO8lRyvBY7GU/view?usp=share_link">The 5 Second Rule</option>
+            <option value="https://drive.google.com/file/d/1ncBQCJykTsDeVvSsE5WFFFYPJ1Y5_XdJ/view?usp=share_link">The Subtle Art of Not Giving a F_ck</option>
+            <option value="https://drive.google.com/file/d/1wkqf3ZHBQqS8g6v1mpGBX0QvA4U_k7Qv/view?usp=share_link">The Intelligent Investor</option>
+            <option value="https://drive.google.com/file/d/1eWBFzhEABY36QLAcg0LEx-0KWR6tGEVX/view?usp=share_link">The Alchemist</option>
+            <option value="https://drive.google.com/file/d/1iRfkMeNaNhjWZJtT_XlSiU7vlerFdAF-/view?usp=share_link">The Millionaire Fastlane</option>
+            <option value="https://drive.google.com/file/d/1QkwrN51smgWVFXQ-xIxWmH5MDzVXnsML/view?usp=share_link">The Personal Mba</option>
+            <option value="https://drive.google.com/file/d/1fm43gF9UWciNZaQcLMcA6H-nEmS5VwMy/view?usp=share_link">The Psychology Of Money</option>
+        </select>
+
+        <select name="" id="sel" class="category-name" size="1" onchange="window.location.href = this.value;">
+            <option value="">Health & Fitness</option>
+            <option value="https://drive.google.com/file/d/1zAwK9BiYjgj_MDYTjAYN5bLL6Dpy_YZX/view?usp=share_link">Gym-Free Training Program</option>
+            <option value="https://drive.google.com/file/d/1rp-dDzXKbqH69EX29bgvab1sr6hwLuzy/view?usp=share_link">500 Low-Carb Recipes</option>
+            <option value="https://drive.google.com/file/d/1n-em_QAR14MMXrvdBiR8mXvN5eTF-Q4F/view?usp=share_link">Complete Calisthenics</option>
+            <option value="https://drive.google.com/file/d/1Vy2bdnB-oTMUb6rvqp6RLnqogD-uA5Bl/view?usp=share_link">DASH Diet for Beginners</option>
+            <option value="https://drive.google.com/file/d/1cyJ7h21LsNGIGPppJATt92YhFutlivtK/view?usp=share_link">Encyclopedia of Diets</option>
+            <option value="https://drive.google.com/file/d/1zWBXVe9s4tV38kaTTK68s23dPJMoP_B4/view?usp=share_link">Everyday Yoga Meditation</option>
+            <option value="https://drive.google.com/file/d/1UW6jjNVr5ZIpjCjDLwZhttbCfnJStOg5/view?usp=share_link">Genius Foods</option>
+            <option value="https://drive.google.com/file/d/1Oidp1g9PXnpVawh-rUi3hz8d9xBQY8c0/view?usp=share_link">Gordon Ramsay's Home Cooking</option>
+            <option value="https://drive.google.com/file/d/1vwmI3ZEELzXOe6BI71YWJxZZlal5K12L/view?usp=share_link">Green Juicing Diet</option>
+            <option value="https://drive.google.com/file/d/194mThgWZLov4nxhMntzd_NYpPFDDwNwC/view?usp=share_link">Handbook of Medicinal Herbs</option>
+            <option value="https://drive.google.com/file/d/1-G17h9LHT3xOr2FT2lNmEBBzV7-SbEKd/view?usp=share_link">Healthy Weight Loss Without Dieting</option>
+            <option value="https://drive.google.com/file/d/1zJg1cWyNmF46NM5Hn5rKjfuJMI_WqkHt/view?usp=share_link">Keto Comfort Foods</option>
+            <option value="https://drive.google.com/file/d/1pOjBJ8XApJRoMSkN3yktRAcbB7izSc-K/view?usp=share_link">Living in the Light</option>
+            <option value="https://drive.google.com/file/d/1T7i-toif-eh34y6kpmW6R7t7NXJzp7yq/view?usp=share_link">Souping The New Juicing </option>
+            <option value="https://drive.google.com/file/d/1WkzKh8TSflNw0ZU6mkpSx_zchmpc8beE/view?usp=share_link">The body fat solution</option>
+            <option value="https://drive.google.com/file/d/1EiEckFDDJn4TlEFNnMGNzTVPSKzsh6NG/view?usp=share_link">The Complete Guide to Yin Yoga</option>
+            <option value="https://drive.google.com/file/d/17DybNiK4BzMiFXghn1p6ruiFcw6cGa2l/view?usp=share_link">The Complete Home Guide to Herbs</option>
+            <option value="https://drive.google.com/file/d/1JVJ7JlI8Zv1_QPh-rQI-pO0W2koZ_KUd/view?usp=share_link">The Complete Yoga Poses</option>
+            <option value="https://drive.google.com/file/d/1mlXnv1eipI8U-giOmmtvBM1DUSCLunAA/view?usp=share_link">How to Combine Rapid Weight Loss</option>
+            <option value="https://drive.google.com/file/d/1BxzOnm15Kox-oyYnae0bwQCNlN0mklrV/view?usp=share_link">The Food Lab Better</option>
+            <option value="https://drive.google.com/file/d/1FvZ2YreyJYBEwp5QoCqIk-_74hXyWnCS/view?usp=share_link">Fitness Bible</option>
+            <option value="https://drive.google.com/file/d/1OiaOUNMWK5gkGR-HLx5Fd6KkeA_qASRh/view?usp=share_link">The Total Fitness Manual</option>
+            <option value="https://drive.google.com/file/d/13lSlrYYkpdgTKEfPTBsecDcZmx8kUB85/view?usp=share_link">Yoga for Beginners</option>
+            <option value="https://drive.google.com/file/d/1LFFodY-9AkG1XGJhBLeYQ1jxCYz9SylV/view?usp=share_link">Yoga Meditation</option>
+            <option value="https://drive.google.com/file/d/1rfk7EAHrWef7tE0v8E7atzi8nz1_Rzv8/view?usp=share_link                                                                                                                               ">Your Body is Your Gym</option>
+        </select>
+
+        <select name="" id="sel" class="category-name" size="1" onchange="window.location.href = this.value;">
+            <option value="">Literature</option>
+            <option value="https://drive.google.com/file/d/1gtTgq-452h6A78f60pnnv3srorcGy9tQ/view?usp=share_link">Raghuvansh</option>
+            <option value="https://drive.google.com/file/d/1QbYIipZDgMUNn8CfOkSWXKU3VGCLbCvJ/view?usp=share_link">Panchatantra</option>
+            <option value="https://drive.google.com/file/d/1ZYsveDtAvG5uEgK0TWKO_fgtTnf-uRhO/view?usp=share_link">Kumarsambhav</option>
+            <option value="https://drive.google.com/file/d/14FsWPUFwgsou6BPnFssjGuMrzuVKc1bs/view?usp=share_link">Chanakya Neeti</option>
+            <option value="https://drive.google.com/file/d/1OBBss-bpYsDnq51B8UgcOYKagXSMynpp/view?usp=share_link">Vevishal</option>
+            <option value="https://drive.google.com/file/d/1fVpypdALKvXL1KFp2aZF0FRcn5J0L7d_/view?usp=share_link">Meghdoot</option>
+            <option value="https://drive.google.com/file/d/1lqjB3kDoXBegJ9SaUssg43p1FagGEXzg/view?usp=share_link">Prithvi-Raj</option>
+
+            <option value="https://drive.google.com/file/d/1F4fGO888x11g3grM49nB28AAaIbv3luh/view?usp=share_link">Ashtadhyayi</option>
+            <option value="https://drive.google.com/file/d/1Y9UsK08XJf5fKq--O6leMDLA5YOTQG64/view?usp=share_link">Dashkumarcharit</option>
+            <option value="https://drive.google.com/file/d/1Z-1Q4rCNwxSK4pnOFvG6cC_7i7QdUXgR/view?usp=share_link">kadambari</option>
+            <option value="https://drive.google.com/file/d/1mgnuChDd_hM4vbmpEjyAn3sZUyGDHNJe/view?usp=share_link">Kiratarjuniyama</option>
+            <option value="https://drive.google.com/file/d/1vi1HF6p-PR1HwMA8tc1KxLLzaAzbHQNs/view?usp=share_link">Maalatiimaadhava</option>
+            <option value="https://drive.google.com/file/d/10-SLFgol01un2uaDcULtjQbjFiPjf4F6/view?usp=share_link">Mahabhashya</option>
+            <option value="https://drive.google.com/file/d/1-q1FrVD_Hhz2Cul0-hUK6PTJRIUCTgxQ/view?usp=share_link">Natyashastra</option>
+            <option value="https://drive.google.com/file/d/119NUQ6u8u4iUgzKlUQEUaptsqJ6Qc-53/view?usp=share_link">Shishupal Vadha</option>
+            <option value="https://drive.google.com/file/d/1Mh5l4az64I8dQ9azlSG0sU8jH9VpFD6b/view?usp=share_link">Kam Sutra</option>
+
+            <option value="https://drive.google.com/file/d/1zXJJrS7HjDk1OSF6mjugI4rySAaHtTPt/view?usp=share_link">Mrichchhkatik</option>
+            <option value="https://drive.google.com/file/d/1jofY8P3ej9pFUJRxGRThgrWwEgfpUU7h/view?usp=share_link">Tulasi-Kyaro</option>
+            <option value="https://drive.google.com/file/d/1CKRHXEWj0KpGN7RoRkchd8ficp5eT_mf/view?usp=share_link">Karbnini-Kathao</option>
+            <option value="https://drive.google.com/file/d/1qIe1j4s7CIw0H0qyX6CUp84tVQYhcgAQ/view?usp=share_link">1984</option>
+            <option value="https://drive.google.com/file/d/1TGlT1jcvpH495GJXKu5gBdE1Ur2roSRj/view?usp=share_link">A History of American Literature</option>
+            <option value="https://drive.google.com/file/d/1edmO6VbLD0XLbTvT5Swd87NlAQVLGHaV/view?usp=share_link">A History of Indian literature</option>
+            <option value="https://drive.google.com/file/d/1zOmzLi7_x913qfSEDMye9douxTpgQKKW/view?usp=share_link">A History of Hindi Literature</option>
+            <option value="https://drive.google.com/file/d/1gOm3tRGlTg5jipYOqoYKjrN-8EoH2Vfp/view?usp=share_link">Ancient Egyptian Literature</option>
+            <option value="https://drive.google.com/file/d/1ikdw6vhRqr9CNcDAaMo1T3_gWqQKnzCt/view?usp=share_link">Ancient Israelite Literature</option>
+            <option value="https://drive.google.com/file/d/1YFi62t1kuCI1lOXQPUvT8Ud-TctqZ180/view?usp=share_link">Beyond Good and-Evil</option>
+            <option value="https://drive.google.com/file/d/1saIJKLstmCG_X0LY86fGjbbj-EaXrYx8/view?usp=share_link">Early Christian Literature</option>
+            <option value="https://drive.google.com/file/d/1NbW1IwzKYDCvWjwNtOFy7rNZDUyodc9s/view?usp=share_link">Egyptian Language</option>
+            <option value="https://drive.google.com/file/d/1uSn2y3gFUXYGNRJPrEhXmuGbY2a--yjQ/view?usp=share_linkhttps://drive.google.com/file/d/1uSn2y3gFUXYGNRJPrEhXmuGbY2a--yjQ/view?usp=share_link">African-American Literature</option>
+            <option value="https://drive.google.com/file/d/1QdNkWicusebD3etAPFYcudwJ5X696Qn1/view?usp=share_link">Greek and Roman Mythology</option>
+            <option value="https://drive.google.com/file/d/1MY4t8zvZf_kH70nMnNbiQjBcyPhtEF4c/view?usp=share_link">English Literature</option>
+            <option value="https://drive.google.com/file/d/1WDdsU7-SaH053ASicqsrQyvoLlwQckhh/view?usp=share_link">German Literature of the Nineteenth Century</option>
+        </select>
+
+        <select name="" id="sel" class="category-name" size="1" onchange="window.location.href = this.value;">
+            <option value="">Crime</option>
+            <option value="https://drive.google.com/file/d/1BEr5RNo1Q1f8DqspzsE77sbJyHTnLNuB/view?usp=share_link">Big Little Lies</option>
+            <option value="https://drive.google.com/file/d/1-K1_McqUjKcfPTjZsWthohLh2n-QA4eT/view?usp=share_link">In Cold Blood</option>
+            <option value="https://drive.google.com/file/d/1WgGP0HMEESKzId-tYXK66OvGMEg4til9/view?usp=share_link">Killers of the Flower Moon</option>
+            <option value="https://drive.google.com/file/d/1SQGA6J9NCGp-vVz2on6ac_k0HsKurdXC/view?usp=share_link">Midnight in the Garden of Good and Evil</option>
+            <option value="https://drive.google.com/file/d/1SVpWVPQmTFuClgYBCWSsOVEfehjyxRcz/view?usp=share_link">Moonstone</option>
+            <option value="https://drive.google.com/file/d/1keny5nssLepR1LE5eO45hFETEwF71zHd/view?usp=share_link">Presumed Innocent</option>
+            <option value="https://drive.google.com/file/d/1_D5Y0t0uKnj-8kxAzXevX9V5VZ_GbEzp/view?usp=share_link">The Daughter of Time</option>
+            <option value="https://drive.google.com/file/d/1dq5xSVqn252qA7warWEGAIgCOaaIj8yr/view?usp=share_link">The Devil in the White city</option>
+            <option value="https://drive.google.com/file/d/1x7Oz2RCEwR71QLS3Pe1cmXgrybXFXiLi/view?usp=share_link">The Dry Jane Harper</option>
+            <option value="https://drive.google.com/file/d/1Aabh5AOiwEIg5rUYLsvfabfLyD-1e_qB/view?usp=share_link">The Girl on the Train</option>
+            <option value="https://drive.google.com/file/d/1vbzpbtDMRu2q5ib7mz2qbjUQaVnUVi_S/view?usp=share_link">The Guest List</option>
+            <option value="https://drive.google.com/file/d/1haVPqBXLHjCE2PC4gZB4G8BcOw6mmwCf/view?usp=share_link">The Maltese Falcon</option>
+            <option value="https://drive.google.com/file/d/1YT3T3EyYqYah9U3vIzc7a4BKXn4of-JO/view?usp=share_link">The Silence of the Lambs</option>
+            <option value="https://drive.google.com/file/d/182_LvPmABvO0RD-rsa_luAb-LLWCQ-GV/view?usp=share_link">The-Silent-Patient-Book</option>
+            <option value="https://drive.google.com/file/d/1VjjktQy4gqv6l4C75O2nHW8UVtpjYE3z/view?usp=share_link">Woman In White</option>
+        </select>
+
+        <select name="" id="sel" class="category-name" size="1" onchange="window.location.href = this.value;">
+            <option value="">Spiritual</option>
+            <option value="https://drive.google.com/file/d/15qYTTNYvJpbSo9XeJjcoxzuRiHwslqXv/view?usp=share_link">श्रीमद भगवद गीता</option>
+            <option value="https://drive.google.com/file/d/1iLJPDBQDvw9LbWeXZS_xcEEw9BR1weQF/view?usp=share_link">रामायण</option>
+            <option value="https://drive.google.com/file/d/1Tod_u_I_2NygzDmOqM4Kb27TzCM0m4vz/view?usp=share_link">महाभारत</option>
+            <option value="https://drive.google.com/file/d/1BXhKJqvoRgt5D-o_YqR-lfPdBZthviae/view?usp=share_link">बाइबिल</option>
+            <option value="https://drive.google.com/file/d/1_ZaY6cdrPYHBVjkcc12jNtm0SCs56v1U/view?usp=share_link">नीलकण्ठचरित्र</option>
+            <option value="https://drive.google.com/file/d/1Kq2MIbdvf75f_zi-dmMjNuZBTR5ffQdl/view?usp=share_link">वंचनामृत</option>
+            <option value="https://drive.google.com/file/d/1lSQIBKGBJqxrqZ0jZLnc7LwZ5kPL6a4q/view?usp=share_link">घनश्यामचरित्र</option>
+            <option value="https://drive.google.com/file/d/12f7UwKn_P40ioDWh93rKsGXa9a57Qz65/view?usp=share_link">ऋग्वेद</option>
+            <option value="https://drive.google.com/file/d/1cWwVDAY2dFSqKnVPMMfXlTqFD7DKC5Vb/view?usp=share_link">यजुर्वेद</option>
+            <option value="https://drive.google.com/file/d/168NdcWUQaxHjXyc8eTNGppKTa-IzKC_Z/view?usp=share_link">सामवेद</option>
+            <option value="https://drive.google.com/file/d/1eS4NThc8HN5v3wE4TrjNm-Yf53AAEank/view?usp=share_link">अथर्ववेद (भाग 1)</option>
+            <option value="https://drive.google.com/file/d/1gpsOIDeOy0Xt_v5IKdj2hKwL2JnZ59aD/view?usp=share_link">अथर्ववेद (भाग 2)</option>
+            <option value="https://drive.google.com/file/d/1DMM4dmDYKuYEbO3Rpby61sdYQrNDiTaI/view?usp=share_link">अग्निपुराण</option>
+            <option value="https://drive.google.com/file/d/16Noo5oBhJNsL6ansQxtAQtNkchU9h92V/view?usp=share_link">भविष्य पुराण</option>
+            <option value="https://drive.google.com/file/d/1Zs5Gu3X53Ah4wcqnMxtPj6FzXfHIoNWU/view?usp=share_link">भागवत पुराण</option>
+            <option value="https://drive.google.com/file/d/1EfDeurzI6UwZcMBww7cwto2riWeeeWmV/view?usp=share_link">ब्रह्माण्ड पुराण (भाग 1)</option>
+            <option value="https://drive.google.com/file/d/1oY-JtWp6c3mYY8Eo1yUmT7gEilk0v7Ao/view?usp=share_link">ब्रह्माण्ड पुराण (भाग 2)</option>
+            <option value="https://drive.google.com/file/d/1g-DpYzz3IudWaAlkZyy3jLCsKfWw5Soj/view?usp=share_link">ब्रम्ह पुराण</option>
+            <option value="https://drive.google.com/file/d/1R06POYafuCuzXVK1It59poE_jBRAar6C/view?usp=share_link">गरुड़ पुराण</option>
+            <option value="https://drive.google.com/file/d/1hW-GPmbeU26STjyQaxSd1S3egXkKLh5v/view?usp=share_link">कर्म पुराण</option>
+            <option value="https://drive.google.com/file/d/1tZuQXx2w3J0zHXm8pdnibpk5Jw7TPenz/view?usp=share_link">लिंग पुराण</option>
+            <option value="https://drive.google.com/file/d/1KwX_UU7FABCErPsv_L53p61BYtsi9uh2/view?usp=share_link">मार्कण्डेय पुराण</option>
+            <option value="https://drive.google.com/file/d/1s3BIS2fq83uoFWNt8gz-0Mi2eIxjnUUb/view?usp=share_link">मत्स्य पुराण (भाग 1)</option>
+            <option value="https://drive.google.com/file/d/1KbwulI6fI7rttxQpR4DnoNfZZUIcJN9C/view?usp=share_link">मत्स्य पुराण (भाग 2)</option>
+            <option value="https://drive.google.com/file/d/143Qs81DdPgYDQ5UkLxMYB-4GOKvdAgtT/view?usp=share_link">नारद पुराण</option>
+            <option value="https://drive.google.com/file/d/1O3P2uNm_hYU-zE-Rt151I7WkLaPNQTw-/view?usp=share_link">पद्म पुराण</option>
+            <option value="https://drive.google.com/file/d/1TTUv32JHs03wcau1VYdei1u9S9eSvZkH/view?usp=share_link">स्कंद पुराण</option>
+            <option value="https://drive.google.com/file/d/1Um9Qh_yV3ZPqK9EzIdP5N-4jSt7Y58qH/view?usp=share_link">शिव पुराण</option>
+            <option value="https://drive.google.com/file/d/19_hz9ektqrEbDED3C0j2uF2ITUWGl5z2/view?usp=share_link">वैवर्त पुराण</option>
+            <option value="https://drive.google.com/file/d/1o9zf53nSBmMooIZwJp2Uwz5uvwojkX0N/view?usp=share_link">वराह पुराण</option>
+            <option value="https://drive.google.com/file/d/10DXeUWBEsy3bdXkOUI_eoMt4TkQz9a4E/view?usp=share_link">विष्णु पुराण</option>
+            <option value="https://drive.google.com/file/d/1W6BYB3QlLug_tPJXOEdmB2_Y6wcIsjtk/view?usp=share_link">वामन पुराण</option>
+        </select>
+
+        <select name="" id="sel" class="category-name" size="1" onchange="window.location.href = this.value;">
+            <option value="">History</option>
+            <option value="https://drive.google.com/file/d/10el4Wr0iGQtiWGD76sL-dW5hTF1xsyAO/view?usp=share_link">प्राचीन भारत का इतिहास</option>
+            <option value="https://drive.google.com/file/d/1lYhpvhgyOZl_WwxBhhDgm1TylmkWnJhg/view?usp=share_link">भारतीय संस्कृति : स्वरुप और विकास</option>
+            <option value="https://drive.google.com/file/d/1P4iP06kpIEd6Z1uU5gptsQLbK1GdEAVb/view?usp=share_link">भारत का इतिहास : 1740-1947</option>
+            <option value="https://drive.google.com/file/d/1B-PpgVvpx39PJirDLJxWjLru9VtY4OQ_/view?usp=share_link">India's Struggle for Independence, 1857-1947</option>
+            <option value="https://drive.google.com/file/d/1hVA0wbl4e6ymxLF0ErTwemjDRCscOO_8/view?usp=share_link">Indian-Independence-Act-1947</option>
+            <option value="https://drive.google.com/file/d/1-8wxTP3QL0Bfcs3wh0PYpRwbnq67hNRz/view?usp=share_link">THE INDUS CIVILIZATION</option>
+            <option value="https://drive.google.com/file/d/1uxInQYlBN1mvM-uuI1iK4SnUsWacRqam/view?usp=share_link">INDIAN TEMPLE ARCHITECTURE</option>
+            <option value="https://drive.google.com/file/d/1STeG-d8Ib2gNSD1dXvl9GA3s4TC7Slnn/view?usp=share_link">A HISTORY OF WORLD</option>
+            <option value="https://drive.google.com/file/d/1pK-f-u60aGoKdWY-ZgOOy_lLq2AUbQ8C/view?usp=share_link">ANCIENT HISTORY OF INDIA</option>
+            <option value="https://drive.google.com/file/d/1vL620RDUxpQcYtN74TNioYZMOAKi220i/view?usp=share_link">Bharat Vibhajan</option>
+            <option value="https://drive.google.com/file/d/1B5sZPaQFrpwctUZS8A6EMxUAaWRgLWZu/view?usp=share_link">भारतीय इतिहास एवं राष्ट्रीय आंदोलन</option>
+            <option value="https://drive.google.com/file/d/1hyQZ-a9ao5GCxP0KvXgj0lEs1xa-68VH/view?usp=share_link">NCERT Hindi Class 11</option>
+            <option value="https://drive.google.com/file/d/1rLmOXlIEx-ZXH42YQVzueFnqFY2-mIm3/view?usp=share_link">NCERT Hindi Class 12</option>
+            <option value="https://drive.google.com/file/d/1iv3cAUbsb3NPy7odjWsxgZjmWfbXBv3z/view?usp=share_link">NCERT Hindi Class 12 (GUJ)</option>
+        </select>
+    </div>
+
+    <section class="footer" id="footer">
+        <!-- <div class="box-container">
+            <div class="box">
+                <h3>our location</h3>
+                <a href="#"><i class="fa-solid fa-location-dot"></i>india</a>
+            </div>
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="./index.html"><i class="fa-solid fa-arrow-right"></i>home</a>
+                <a href="#"><i class="fa-solid fa-arrow-right"></i>category</a>
+                <a href="#"><i class="fa-solid fa-arrow-right"></i>founder</a>
+                <a href="#"><i class="fa-solid fa-arrow-right"></i>about</a>
+            </div>
+
+            <div class="box">
+                <h3>Extra links</h3>
+                <a href="#"><i class="fa-solid fa-arrow-right"></i>Account info</a>
+                <a href="#"><i class="fa-solid fa-arrow-right"></i>privacy policy</a>
+                <a href="#"><i class="fa-solid fa-arrow-right"></i>our services</a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#"><i class="fa-solid fa-phone"></i>+91 63514 36046</a>
+                <a href="#"><i class="fa-solid fa-envelope"></i>abhayvidja09@gmail.com</a>
+            </div>
+        </div> -->
+
+        <div class="share">
+
+            <a href="https://www.facebook.com/abhay.vidja?mibextid=ZbWKwL"><i class="fa-brands fa-facebook"></i></a>
+
+            <a href="https://instagram.com/abhay._____.09?igshid=ZDdkNTZiNTM="><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/abhay-vidja-964889258"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+
+        <div class="credit">
+            created by <span>abhay vidja</span> | all rights reserved.
+        </div>
+    </section>
+
+    <div class="loader-container">
+        <img src="./gif/book.gif" alt="">
+    </div>
+
+    <script>
+
+        // header-2 ne fixed karva
+        // window.onscroll = () => {
+        //     searchForm.classList.remove('active');
+
+        //     if (window.scrollY > 80) {
+        //         document.querySelector('header ').classList.add('active');
+        //     }
+        //     else {
+        //         document.querySelector('header ').classList.remove('active');
+        //     }
+        // }
+
+        // restart karo toy eya ne eya j riye
+        window.onload = () => {
+            if (window.scrollY > 80) {
+                document.querySelector('header ').classList.add('active');
+            }
+            else {
+                document.querySelector('header ').classList.remove('active');
+            }
+
+            fadeOut();
+        }
+
+        // serch bar lavava mate
+        searchForm = document.querySelector('.search-form');
+        document.querySelector('#search-btn').onclick = () => {
+            searchForm.classList.toggle('active');
+        }
+
+        //login mate
+        let loginForm = document.querySelector('.login-form-container');
+        document.querySelector('#login-btn').onclick = () => {
+            loginForm.classList.toggle('active');
+        }
+        document.querySelector('#close-login-btn').onclick = () => {
+            loginForm.classList.remove('active');
+        }
+
+        function loader() {
+            document.querySelector('.loader-container').classList.add('active');
+        }
+
+        function fadeOut() {
+            setTimeout(loader, 2000);
+        }
+    </script>
+</body>
+
+</html>
