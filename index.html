@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book's Buddy</title>
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <link rel="stylesheet" href="fontawesome-free-6.2.1-web/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="Website icon" href="./top/icons8-book-50 (1).png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            text-transform: capitalize;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        :root {
+            --green: #27ae60;
+            --dark-color: #219150;
+            --black: #444;
+            --light-color: #666;
+            --border: 0.3rem solid rgba(0, 0, 0, 0.1);
+            --border-hover: 0.1rem solid var(--black);
+            --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+
+        html {
+            font-size: 62.5%;
+            overflow-x: hidden;
+            scroll-padding-top: 5rem;
+            scroll-behavior: smooth;
+        }
+
+        html ::-webkit-scrollbar {
+            width: 1rem;
+        }
+
+        html ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        html ::-webkit-scrollbar-thumb {
+            background: var(--black);
+        }
+
+        section {
+            padding: 5rem 9%;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .heading::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 0.01rem;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: -1;
+        }
+
+        .heading span {
+            font-size: 3rem;
+            padding: 0.5rem 2rem;
+            color: var(--black);
+            background: white;
+            border: var(--border);
+        }
+
+        .btn {
+            margin-top: 1rem;
+            display: inline-block;
+            padding: 0.9rem 3rem;
+            border-radius: 0.5rem;
+            color: white;
+            background: var(--green);
+            font-size: 1.7rem;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background: var(--dark-color);
+        }
+
+        section {
+            padding: 5rem 9%;
+        }
+
+        header .header-1 {
+            background: white;
+            padding: 1.5rem 9%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header .header-1 .logo {
+            font-size: 2.5rem;
+            font-weight: bolder;
+            color: var(--black);
+        }
+
+        header .header-1 .logo i {
+            color: var(--green);
+        }
+
+        header .header-1 div {
+            font-size: 2.5rem;
+            margin-left: 1.5rem;
+            color: var(--black);
+            cursor: pointer;
+        }
+
+        /* header.active{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100/0;
+} */
+
+        #search-btn {
+            display: none;
+        }
+
+        header .header-2 {
+            background: var(--green);
+        }
+
+        header .header-2 .navbar {
+            text-align: center;
+        }
+
+        header .header-2 .navbar a {
+            color: white;
+            display: inline-block;
+            padding: 1.2rem;
+            font-size: 1.7rem;
+        }
+
+        header .header-2 .navbar a:hover {
+            background: var(--dark-color);
+        }
+
+        /* header .header-2.active{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+} */
+
+        /* body{
+    height: 300rem;
+} */
+
+        .bottom-navbar {
+            text-align: center;
+            background: var(--green);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: none;
+        }
+
+        .bottom-navbar a {
+            font-size: 2.5rem;
+            padding: 2rem;
+            color: white;
+        }
+
+        .bottom-navbar a:hover {
+            background: var(--dark-color);
+        }
+
+
+
+        .home {
+            background: whitesmoke;
+        }
+
+        .home .row {
+            /* display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem; */
+            display: grid;
+            grid-template-columns: 50% 50%;
+            width: 100%;
+        }
+
+        .home .row .content {
+            flex: 1 1 42rem;
+            display: block;
+            margin: auto;
+        }
+
+        .home .row .content h3 {
+            color: var(--black);
+            font-size: 4.5rem;
+            width: 100%;
+        }
+
+        .home .row .image1 img {
+            width: 50rem;
+            height: 35rem;
+            display: block;
+            margin: auto;
+        }
+
+        /* .home .row .book-slider{
+    flex: 1 1 42rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.home .row .book-slider a img{
+    height: 25rem;
+}
+
+.home .row .book-slider a:hover img{
+    transform: scale(0.9);
+} */
+
+        .category {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: -3rem;
+
+        }
+
+        .category .cat-box {
+            width: 30rem;
+            height: 15rem;
+            border-radius: 1.5rem;
+            box-shadow: var(--box-shadow);
+            background: white;
+            transition: 0.5s all ease-in-out;
+        }
+
+        .category .cat-box:hover {
+            transform: translateY(-1.3rem);
+            box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.5);
+        }
+
+        .category .cat-box .upper {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .category .cat-box .upper img {
+            width: 13rem;
+            height: 13rem;
+        }
+
+        .category .cat-box .upper a {
+            display: inline-block;
+            font-size: 2.5rem;
+            margin: auto;
+            color: var(--black);
+            font-weight: bolder;
+        }
+
+        .category .cat-box .lower {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .category .cat-box .lower h2 {
+            font-size: 1.7rem;
+            margin-top: -1.5rem;
+            color: var(--black);
+            font-weight: 300;
+        }
+
+        .featured .featured-slider .box {
+            width: 25rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            border: var(--border);
+            text-align: center;
+        }
+
+        .featured .featured-slider .box:hover {
+            border: var(--border-hover);
+        }
+
+        .featured .featured-slider .box .image {
+            /* margin-top: 4rem; */
+            padding: 1rem;
+            background: linear-gradient(15deg, #eee 30%, #fff 30.1%);
+            transition: 0.5s all ease-in-out;
+        }
+
+        .featured .featured-slider .box:hover .image {
+            transform: translateY(4rem);
+            margin-top: 1rem;
+        }
+
+        .featured .featured-slider .box .image img {
+            height: 25rem;
+
+        }
+
+        .featured .featured-slider .box .head {
+            border-bottom: var(--border);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            z-index: 1;
+            transform: translateY(-100%);
+            transition: 0.5s all ease-in-out;
+        }
+
+        .featured .featured-slider .box:hover .head {
+            transform: translateY(0%);
+        }
+
+        .featured .featured-slider .box .head h3 {
+            color: var(--black);
+            font-size: 1.6rem;
+            padding: 1.5rem;
+        }
+
+        .featured .featured-slider .box .content {
+            background: #eee;
+            padding: 1.5rem;
+        }
+
+        .featured .featured-slider .box .content h3 {
+            font-size: 2rem;
+            color: var(--black);
+        }
+
+        .swiper-wrapper {
+            margin-bottom: 2rem;
+        }
+
+        .categories-container {
+            /* display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 1.5rem;
+    padding: 4rem; */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 50px auto;
+            flex-direction: row;
+        }
+
+        .category-name {
+            font-size: 2rem;
+            background-color: #fff;
+            border: 0.1rem solid var(--green);
+            outline: none;
+            border-radius: 1.2rem;
+            padding: 0.5rem 1rem;
+            box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, .2);
+            width: 60rem;
+            margin: 1.5rem;
+        }
+
+        /* select{
+    width: 50%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+} */
+
+        .footer .box-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+            gap: 1.5rem;
+        }
+
+        .footer .box-container .box h3 {
+            font-size: 2.2rem;
+            color: var(--black);
+            padding: 1rem 0;
+        }
+
+        .footer .box-container .box a {
+            display: block;
+            font-size: 1.4rem;
+            color: var(--light-color);
+            padding: 1rem 0;
+
+        }
+
+        .footer .box-container .box a i {
+            color: var(--green);
+            padding-right: 1rem;
+            transition: 0.3s all ease-in-out;
+        }
+
+        .footer .box-container .box a:hover i {
+            padding-right: 2rem;
+        }
+
+        .footer .share {
+            padding: 1rem 0;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .footer .share a {
+            /* height: 5rem;
+    width: 5rem;
+    line-height: 5rem; */
+            font-size: 2rem;
+            color: var(--green);
+            margin: 0 0.5rem;
+            cursor: pointer;
+        }
+
+        .footer .share a:hover {
+            color: var(--dark-color);
+        }
+
+        .footer .credit {
+            border-top: var(--border);
+            margin-top: 2rem;
+            padding: 0 1rem;
+            padding-top: 2.5rem;
+            font-size: 2rem;
+            color: var(--light-color);
+            text-align: center;
+        }
+
+        .footer .credit span {
+            color: var(--green);
+        }
+
+        .e_mail{
+            text-transform: lowercase;
+        }
+
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: 10000;
+            background: #f7f7f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader-container.active {
+            display: none;
+        }
+
+
+
+
+
+        @media(max-width : 990px) {
+            html {
+                font-size: 55%;
+            }
+
+            header .header-1 {
+                padding: 2rem;
+            }
+
+            section {
+                padding: 3rem 2rem;
+            }
+        }
+
+        @media(max-width : 780px) {
+            html {
+                font-size: 52%;
+            }
+        }
+
+        @media(max-width : 680px) {
+            html {
+                scroll-padding-top: 0;
+            }
+
+            body {
+                padding-bottom: 6rem;
+            }
+
+            header .header-2 {
+                display: none;
+            }
+
+            header .header-1 {
+                box-shadow: var(--box-shadow);
+                position: relative;
+            }
+
+            header .header-1 .search-form {
+                position: absolute;
+                top: -115%;
+                right: 2rem;
+                width: 90%;
+                box-shadow: var(--box-shadow);
+            }
+
+            header .header-1 .search-form.active {
+                top: 115%;
+            }
+
+            #search-btn {
+                display: inline-block;
+            }
+
+            /* .icons{
+        display: inline-block;
+    } */
+
+            .bottom-navbar {
+                display: block;
+            }
+
+            .home .row {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .home .row .image1 img {
+                width: 35rem;
+                height: 25rem;
+                display: block;
+                margin: auto;
+            }
+
+            .home .row .content {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            .home .row .content h3 {
+                font-size: 3.5rem;
+            }
+
+            .category .cat-box {
+                width: 17rem;
+                height: 11rem;
+            }
+
+            .category .cat-box .upper {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .category .cat-box .upper img {
+                width: 8rem;
+                height: 8rem;
+                display: block;
+                margin: auto;
+            }
+
+            .category .cat-box .upper a {
+                font-size: 1.7rem;
+            }
+
+            .category .cat-box .lower {
+                display: none;
+            }
+ 
+
+            /* .category .cat-box{
+        margin-top: 1.5rem;
+        background: whitesmoke;
+    }
+
+    .category .cat-box:hover{
+        transform: none;
+    } */
+        }
+
+        @media(max-width : 450px) {
+            html {
+                font-size: 55%;
+            }
+
+            header .header-1 {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!--header section start-->
+    <header>
+        <div class="header-1">
+            <a href="#" class="logo"><i class="fa-solid fa-book"></i>Book's Buddy</a>
+
+            <!-- <form action="" class="search-form">
+                <input type="search" name="" id="search-box" placeholder="Search here ...">
+                <label for="search-box" class="fa-solid fa-magnifying-glass"></label>
+            </form> 
+
+             <div class="icons">
+                <div id="search-btn" class="fa-solid fa-magnifying-glass"></div>
+                <div id="login-btn" class="fa-solid fa-user"></div>
+            </div> -->
+        </div>
+
+        <div class="header-2">
+            <nav class="navbar">
+                <a href="#home">Home</a>
+                <a href="./category.html">Category</a>
+                <a href="./engineering.html">engineering</a>
+                <a href="#footer">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!--header section end-->
+
+    <!--bottom navbar-->
+
+    <nav class="bottom-navbar">
+        <a href="#home" class="fa-solid fa-house"></a>
+        <a href="./category.html" class="fa-solid fa-list"></a>
+        <a href="./engineering.html" class="fa-solid fa-book"></a>
+        <a href="#footer" class="fa-solid fa-circle-info"></a>
+    </nav>
+
+    <!--login form-->
+
+    <!-- <div class="login-form-container">
+        <div id="close-login-btn" class="fa-solid fa-xmark"></div>
+
+        <form action="">
+            <h3>Sign In</h3>
+            <span>username</span>
+            <input type="email" name="" id="" class="box" placeholder="enter your email">
+            <span>password</span>
+            <input type="password" name="" id="" class="box" placeholder="enter your password">
+            <div class="checkbox">
+                <input type="checkbox" name="" id="remember-me">
+                <label for="remember-me">remember-me</label>
+            </div>
+            <input type="submit" value="sign-in" class="btn">
+            <p>forget password ? <a href="#">click here</a></p>
+            <p>don't have an account ? <a href="#">create one</a></p>
+        </form>
+    </div> -->
+
+
+    <!--home section start-->
+    <section class="home" id="home">
+        <div class="row">
+            <div class="content">
+                <h3>India's biggest online free digital Library</h3>
+                <a href="#featured" class="btn">Read Now</a>
+            </div>
+            <!-- <div class="swiper book-slider mySwiper">
+                <div class="swiper-wrapper">
+                    <a href="#" class="swiper-slide"><img src="./BOOKS/book1.jpg" alt=""></a>
+                    <a href="#" class="swiper-slide"><img src="./BOOKS/book2.jpg" alt=""></a>
+                    <a href="#" class="swiper-slide"><img src="./BOOKS/book3.jpg" alt=""></a>
+                    <a href="#" class="swiper-slide"><img src="./BOOKS/book4.jpg" alt=""></a>
+                    <a href="#" class="swiper-slide"><img src="./BOOKS/book5.jpg" alt=""></a>
+                    <a href="#" class="swiper-slide"><img src="./BOOKS/book6.jpg" alt=""></a>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div> -->
+            <div class="image1">
+                <img src="./top/template.png" alt="">
+            </div>
+        </div>
+    </section>
+
+    <!--category-box start-->
+
+    <div class="category">
+        <a href="./category.html" >
+            <div class="cat-box">
+                <div class="upper">
+                    <img src="./top/cat-1.png" alt="">
+                    <a href="./category.html">Category</a>
+                </div>
+                
+                <div class="lower">
+                    <h2>Select book by Category</h2>
+                </div>
+            </div>
+        </a>
+        <a href="./engineering.html">
+            <div class="cat-box">
+                <div class="upper">
+                    <img src="./top/cat-2.png" alt="">
+                    <a href="./engineering.html">Engineering</a>
+                </div>
+                <div class="lower">
+                    <h2>Select book by Subject</h2>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <!--popular books-->
+
+    <section class="featured" id="featured">
+        <h1 class="heading"><span>Most Popular Books</span></h1>
+        <div class="swiper featured-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide box">
+                    <div class="head">
+                        <h3>Size : 172 MB</h3>
+                    </div>
+                    <div class="image">
+                        <img src="./top/geeta.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>श्रीमद भगवद गीता</h3>
+                        <a href="https://drive.google.com/file/d/15qYTTNYvJpbSo9XeJjcoxzuRiHwslqXv/view?usp=share_link" class="btn">Read <i class="fa-solid fa-book-open"></i></a>
+                        <!-- <a href="https://drive.google.com/file/d/1uW97Z5gKpCL7ns8Mdtr6aspHZykZN9JP/view?usp=share_link" class="btn">read <i class="fa-solid fa-book-open"></i></a> -->
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="head">
+                        <h3>Size : 2.9 MB</h3>
+                    </div>
+                    <div class="image">
+                        <img src="./top/money.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Psychology Of Money</h3>
+                        <a href="https://drive.google.com/file/d/1fm43gF9UWciNZaQcLMcA6H-nEmS5VwMy/view?usp=share_link" class="btn">Read <i class="fa-solid fa-book-open"></i></a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="head">
+                        <h3>Size : 6.9 MB</h3>
+                    </div>
+                    <div class="image">
+                        <img src="./top/sachin.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Play It My Way</h3>
+                        <a href="https://drive.google.com/file/d/1Cs359zHlgV4-Ag_6hKAYDyX1_wZy2-Wk/view?usp=share_link" class="btn">Read <i class="fa-solid fa-book-open"></i></a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="head">
+                        <h3>Size : 2.54 MB</h3>
+                    </div>
+                    <div class="image">
+                        <img src="./top/zero to one.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Zero To One</h3>
+                        <a href="https://drive.google.com/file/d/1x6K9LiL8farCjUS1T5LXpytabPp_94l-/view?usp=share_link" class="btn">Read <i class="fa-solid fa-book-open"></i></a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="head">
+                        <h3>Size : 11.3 MB</h3>
+                    </div>
+                    <div class="image">
+                        <img src="./top/dad.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Rich Dad Poor Dad</h3>
+                        <!-- <a href="./BOOKS/certificate (10).pdf" download class="btn">Read <iclass="fa-solid fa-book-open"></i></a> -->
+                        <a href="https://drive.google.com/file/d/13kKkKcP7Kr4Mr4fmL5oY2moGaEvMa7gC/view?usp=share_link" class="btn">Read <i class="fa-solid fa-book-open"></i></a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="head">
+                        <h3>Size : 19 MB</h3>
+                    </div>
+                    <div class="image">
+                        <img src="./top/itihas.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>प्राचीन भारत का इतिहास</h3>
+                        <a href="https://drive.google.com/file/d/10el4Wr0iGQtiWGD76sL-dW5hTF1xsyAO/view?usp=share_link" class="btn">Read <i class="fa-solid fa-book-open"></i></a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="head">
+                        <h3>Size : 0.9 MB</h3>
+                    </div>
+                    <div class="image">
+                        <img src="./top/blackhole.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Black Holes and Baby Universes</h3>
+                        <a href="https://drive.google.com/file/d/1I-oTkl97j5fY2Ay__5GVLHw8ogkBFisw/view?usp=share_link" class="btn">Read <i class="fa-solid fa-book-open"></i></a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="head">
+                        <h3>Size : 46.5 MB</h3>
+                    </div>
+                    <div class="image">
+                        <img src="./top/ramayan.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>रामायण</h3>
+                        <a href="https://drive.google.com/file/d/1iLJPDBQDvw9LbWeXZS_xcEEw9BR1weQF/view?usp=share_link" class="btn">Read <i class="fa-solid fa-book-open"></i></a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="head">
+                        <h3>Size : 5.66 MB</h3>
+                    </div>
+                    <div class="image">
+                        <img src="./top/atomic.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Atomic Habits</h3>
+                        <a href="https://drive.google.com/file/d/1uqGEAC3f94lkn_KdPklAnICbqD-aBWun/view" class="btn">Read <i class="fa-solid fa-book-open"></i></a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="head">
+                        <h3>Size : 2.38 MB</h3>
+                    </div>
+                    <div class="image">
+                        <img src="./top/vanchnamrut.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>वंचनामृत</h3>
+                        <a href=".https://drive.google.com/file/d/1Kq2MIbdvf75f_zi-dmMjNuZBTR5ffQdl/view?usp=share_link" class="btn">Read <i class="fa-solid fa-book-open"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div> -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <section class="footer" id="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>our location</h3>
+                <a href="https://goo.gl/maps/wECiLDRaHCRiabD76"><i class="fa-solid fa-location-dot"></i>india</a>
+                <!-- <div ><i class="fa-solid fa-location-dot"></i>0</div> -->
+            </div>
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#"><i class="fa-solid fa-arrow-right"></i>home</a>
+                <a href="./category.html"><i class="fa-solid fa-arrow-right"></i>category</a>
+                <a href="./engineering.html"><i class="fa-solid fa-arrow-right"></i>engineering</a>
+                <!-- <a href="#"><i class="fa-solid fa-arrow-right"></i>about</a> -->
+            </div>
+
+            <div class="box">
+                <h3>Extra links</h3>
+                <a href="#"><i class="fa-solid fa-arrow-right"></i>Account info</a>
+                <a href="#"><i class="fa-solid fa-arrow-right"></i>privacy policy</a>
+                <a href="#"><i class="fa-solid fa-arrow-right"></i>our services</a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="tel:+916351436046"><i class="fa-solid fa-phone"></i>63514 36046</a>
+                <a href="tel:+919558451832"><i class="fa-solid fa-phone"></i>95584 51832</a>
+                <a href="mailto:booksbuddy2023@gmail.com" class="e_mail"><i class="fa-solid fa-envelope"></i>booksbuddy2023@gmail.com</a>
+                <!-- <a href="tel:+916351436046">6351436046</a> -->
+            </div>
+        </div>
+
+        <div class="share">
+
+            <a href="https://www.facebook.com/abhay.vidja?mibextid=ZbWKwL"><i class="fa-brands fa-facebook"></i></a>
+
+            <a href="https://instagram.com/abhay._____.09?igshid=ZDdkNTZiNTM="><i
+                    class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/jeet-kavaiya-8619a5244"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+
+        <div class="credit">
+            created by <span>abhay vidja</span> | all rights reserved.
+        </div>
+    </section>
+
+    
+
+    <div class="loader-container">
+        <img src="./gif/book.gif" alt="">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+
+        // header-2 ne fixed karva
+        // window.onscroll = () => {
+        //     searchForm.classList.remove('active');
+
+        //     if(window.scrollY > 80){
+        //         document.querySelector('header ').classList.add('active');
+        //     }
+        //     else{
+        //         document.querySelector('header ').classList.remove('active');
+        //     }
+        // }
+
+        // restart karo toy eya ne eya j riye
+        window.onload = () => {
+            if (window.scrollY > 80) {
+                document.querySelector('header ').classList.add('active');
+            }
+            else {
+                document.querySelector('header ').classList.remove('active');
+            }
+
+            fadeOut();
+        }
+
+        // serch bar lavava mate
+        // searchForm = document.querySelector('.search-form');
+        // document.querySelector('#search-btn').onclick = () => {
+        //     searchForm.classList.toggle('active');
+        // }
+
+        // //login mate
+        // let loginForm = document.querySelector('.login-form-container');
+        // document.querySelector('#login-btn').onclick = () => {
+        //     loginForm.classList.toggle('active');
+        // }
+        // document.querySelector('#close-login-btn').onclick = () => {
+        //     loginForm.classList.remove('active');
+        // }
+
+        var swiper = new Swiper(".featured-slider", {
+            spaceBetween: 10,
+            loop: true,
+            centeredSlide: true,
+            autoplay : {
+                delay : 4500,
+                disableOnInteraction : false
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            // navigation : {
+            //     nextE1 : ".swiper-button-next",
+            //     prevE1 : ".swiper-button-prev"
+            // },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                450: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+                1024: {
+                    slidesPerView: 4,
+                }
+            }
+        })
+
+
+
+        function loader() {
+            document.querySelector('.loader-container').classList.add('active');
+        }
+
+        function fadeOut() {
+            setTimeout(loader, 3000);
+        }
+
+
+        const countE1 = document.getElementById("count");
+        countvisit();
+
+        function countvisit(){
+            fetch('https://api.countapi.xyz/update/book/abhay/?amount=1')
+                .then((res) => res.json())
+                .then((res) => {
+                    // countE1.innerHTML = res.value;
+                    console.log(res.value)  // console ma live user dekhadse
+                })
+        }
+
+        // let cat = document.getElementById("category");
+        // let slide = document.getElementById("featured");
+        // let main = document.getElementById("main");
+        // let cate = document.getElementById("cate")
+
+        // cat.addEventListener("click" , () => {
+        //     slide.classList.toggle("active");
+        //     main.classList.toggle("active");
+        //     cate.classList.toggle("active");
+        //     console.log("click")
+        // })
+    </script>
+</body>
+
+</html>
